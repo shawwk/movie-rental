@@ -2,42 +2,40 @@ Ext.define('MovieRental.view.CustomerPanel', {
 
     extend: 'Ext.window.Window',
 
-    controller: 'customer-controller',
+    controller: 'customerController',
 
     title: 'New customer',
-
     width: 400,
-    height: 300,
+    height: 215,
     floating: true,
+    layout: 'form',
     modal: true,
-
-    // store: {
-    //     type: 'customer'
-    // },
-    viewModel: {
-        stores: {
-            myStore: {
-                type: 'customer'
-            }
-        }
+    viewModel: { 
+        type: 'customerViewModel'
+    },
+    bind: {
+        title: '{selectedCustomer.Name}'
     },
     items:[{
         xtype: 'form',
-        reference: 'newCustomerForm',
+        reference: 'customerForm',
         items:[{
             xtype: 'textfield',
+            // name: 'Name',
             fieldLabel: 'Name',
-            bind: '{myStore.Name}'
+            bind: '{customerInfo.Name}',
         },
         {
             xtype: 'textfield',
+            // name: 'Address',
             fieldLabel: 'Address',
-            bind: '{myStore.Address}'
+            bind: '{customerInfo.Address}'
         },
         {
             xtype: 'textfield',
+            // name: 'Contact',
             fieldLabel: 'Contact',
-            bind: '{myStore.Contact}'
+            bind: '{customerInfo.Contact}'
         }],
         buttons: [{
             text: 'Save',

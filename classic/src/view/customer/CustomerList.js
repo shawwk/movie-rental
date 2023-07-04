@@ -4,29 +4,47 @@ Ext.define('MovieRental.view.customer.CustomerList', {
     xtype: 'customerList',
     tbar: [{
         xtype: 'button',
-        text: 'New Customer',
+        text: 'Add Customer',
         width: 130,
         handler: 'onAddButtonClick'
     }],
+    // bbar:{
+    //     xtype: 'pagingtoolbar',
+    //     displayInfo: true
+    // },
 
     title: 'Customer List',
 
-    store: { type: 'customer'},
-    controller: 'customer-controller',
+    bind: { store: '{customers}'},
+
+    viewModel: { 
+        type: 'customerViewModel'
+    },
+
+    controller: 'customerController',
 
     columns: [{
+        text: "Id",
+        flex: 1,
+        dataIndex: 'Id',
+        hidden: true
+    },
+    {
         text: "Name",
         flex: 1,
-        dataIndex: 'Name'
+        dataIndex: 'Name',
+        bind: '{customers.Name}'
     },
     {
         text: "Address",
         flex: 1,
-        dataIndex: 'Address'
+        dataIndex: 'Address',
+        bind: '{customers.Address}'
     },
     {
         text: "Contact",
         flex: 1,
-        dataIndex: 'Contact'
+        dataIndex: 'Contact',
+        bind: '{customers.Contact}'
     }]
 });

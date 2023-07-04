@@ -1,30 +1,27 @@
+
 Ext.define('MovieRental.view.customer.CustomerController', {
     extend: 'Ext.app.ViewController',
 
-    alias: 'controller.customer-controller',
-    
+    alias: 'controller.customerController',
+
     onAddButtonClick: function() {
-       var floatingScreen = Ext.create('MovieRental.view.CustomerPanel');
-       floatingScreen.show();
+        var modal = Ext.create('MovieRental.view.CustomerPanel');
+        modal.getViewModel().set('customers' ,this.getViewModel().getStore('customers'));
+        modal.show();
     },
+    
     onSaveCustomer: function() {
-        var window = this.getView();
-        var form = window.lookupReference('newCustomerForm');
-        var viewModel = form.getViewModel();
-        var store = viewModel.getStore('myStore');
-        var record = form.getRecord();
-            // var form = window.lookupReference('newCustomerForm');
-            // var store = form.getViewModel().getStore('customerStore');
-            // var record = form.getRecord();
-            
-            store.sync({
-                success: function(batch, options) {
-                    // Save successful
-                    window.close();
-                },
-                failure: function(batch, options) {
-                    // Save failed
-                }
-            });
+        var me = this;
+        var vm = me.getViewModel();
+        var store = vm.get('customers');
+        store.add(vm.data.customerInfo);
+        store.sync({
+            success: function(response, request){
+                alert('Account Successfully Created!');
+            },
+            failure: function(){
+
+            }
+        });
     }
 });

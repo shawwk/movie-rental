@@ -12,6 +12,11 @@ Ext.application({
         // so that application classes do not need to require each other.
         'MovieRental.*'
     ],
+    // launch: function () {
+    //     Ext.create('MovieRental.view.CustomerPanel');
+    
+    //     Ext.create('MovieRental.view.customer.CustomerController');
+    //   },
 
     // The name of the initial view to create.
     mainView: 'MovieRental.view.main.Main'

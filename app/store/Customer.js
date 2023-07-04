@@ -3,13 +3,13 @@ var url = 'https://localhost:44321/';
 Ext.define('MovieRental.store.Customer',{
 extend: 'Ext.data.Store',
 
-alias: 'store.customer',
+alias: 'store.customerStore',
 
 model: 'MovieRental.model.Customer',
+pageSize: 2,
 proxy:
 {
     type: 'ajax',
-    // url: 'https://localhost:44321',
     api:{
         read: url + 'api/customer/list',
         create: url + 'api/customer/add',
@@ -23,6 +23,5 @@ proxy:
         type: 'json',
         writeAllFields: true
     }
-},
-autoLoad: true
+}
 });
