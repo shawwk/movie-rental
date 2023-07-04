@@ -17,11 +17,21 @@ Ext.define('MovieRental.view.customer.CustomerController', {
         store.add(vm.data.customerInfo);
         store.sync({
             success: function(response, request){
-                alert('Account Successfully Created!');
+                me.toast('Account Successfully Created!');
+                me.getView().destroy();
             },
             failure: function(){
-
+                me.toast('Error! Problem creating account');
             }
         });
+    },
+    toast: function(msg){
+        Ext.toast({
+            html: msg,
+            colasable: false,
+            align: 'b',
+            slideDuration: 300,
+            maxWidth: 400
+        })
     }
 });

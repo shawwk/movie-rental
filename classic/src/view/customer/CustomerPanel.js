@@ -21,19 +21,16 @@ Ext.define('MovieRental.view.CustomerPanel', {
         reference: 'customerForm',
         items:[{
             xtype: 'textfield',
-            // name: 'Name',
             fieldLabel: 'Name',
             bind: '{customerInfo.Name}',
         },
         {
             xtype: 'textfield',
-            // name: 'Address',
             fieldLabel: 'Address',
             bind: '{customerInfo.Address}'
         },
         {
             xtype: 'textfield',
-            // name: 'Contact',
             fieldLabel: 'Contact',
             bind: '{customerInfo.Contact}'
         }],

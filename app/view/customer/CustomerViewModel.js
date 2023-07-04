@@ -3,7 +3,7 @@ Ext.define('MovieRenta.customer.CustomerViewModel', {
     alias: 'viewmodel.customerViewModel',
     deep: true,
     data: {
-        selectedCustomer: null
+        customerInfo: null
     },
     stores: {
         customers: {

@@ -6,10 +6,11 @@ extend: 'Ext.data.Store',
 alias: 'store.customerStore',
 
 model: 'MovieRental.model.Customer',
+
 pageSize: 2,
 proxy:
 {
-    type: 'ajax',
+    type: 'rest',
     api:{
         read: url + 'api/customer/list',
         create: url + 'api/customer/add',
