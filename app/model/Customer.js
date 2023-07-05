@@ -5,9 +5,9 @@ Ext.define('MovieRental.model.Customer', {
     alias: 'model.customerModel',
 
     fields: [
-        {name: 'Id', type: 'int'},
-        {name: 'Name', type: 'string'},
-        {name: 'Address', type: 'string'},
-        {name: 'Contact', type: 'string'}
+        { name: 'Id', type: 'int',  persist : false},
+        { name: 'Name', type: 'string' },
+        { name: 'Address', type: 'string' },
+        { name: 'Contact', type: 'string' }
     ]
 });

@@ -11,11 +11,12 @@ pageSize: 2,
 proxy:
 {
     type: 'rest',
+    noCache: false,
     api:{
         read: url + 'api/customer/list',
         create: url + 'api/customer/add',
-        update: url + 'api/customer/update',
-        destroy: url + 'api/customer/delete/{Id}'
+        update: url + 'api/customer/',
+        destroy: url + 'api/customer/delete?'
     },
     reader: {
         type: 'json'

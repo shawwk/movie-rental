@@ -46,5 +46,19 @@ Ext.define('MovieRental.view.customer.CustomerList', {
         flex: 1,
         dataIndex: 'Contact',
         bind: '{customers.Contact}'
+    },{
+        text: 'Actions',
+        xtype:'actioncolumn',
+        width: 'auto',
+        items: [{
+            xtype: 'button',
+            iconCls: 'fas fa-edit',
+            tooltip: 'Edit',
+            handler : 'onEditButtonClick'
+        },{
+            iconCls:'fa fa-trash',
+            tooltip: 'Delete',
+            handler : 'onDeleteCustomer'
+        }]
     }]
 });
