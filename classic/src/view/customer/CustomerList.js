@@ -13,7 +13,7 @@ Ext.define('MovieRental.view.customer.CustomerList', {
     //     displayInfo: true
     // },
 
-    title: 'Customer List',
+    title: 'Customers',
 
     bind: { store: '{customers}'},
 

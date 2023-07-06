@@ -84,10 +84,10 @@ Ext.define('MovieRental.view.main.Main', {
         }]
     }, {
         title: 'Movies',
-        iconCls: 'fa-user',
-        bind: {
-            html: '{loremIpsum}'
-        }
+        iconCls: 'fa-tv',
+        items:[{
+            xtype: 'movieList'
+        }]
     }, {
         title: 'Customers',
         iconCls: 'fa-users',

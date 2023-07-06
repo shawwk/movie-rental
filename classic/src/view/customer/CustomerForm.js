@@ -1,6 +1,6 @@
-Ext.define('MovieRental.view.CustomerPanel', {
+Ext.define('MovieRental.view.CustomerForm', {
 
-    extend: 'Ext.form.Panel',
+    extend: 'Ext.window.Window',
 
     controller: 'customerController',
 
@@ -20,7 +20,6 @@ Ext.define('MovieRental.view.CustomerPanel', {
 
     items:[{
         xtype: 'form',
-        // reference: 'customerForm',
         items:[{
             xtype: 'textfield',
             bind: '{customerInfo.Id}',

@@ -5,7 +5,7 @@ Ext.define('MovieRental.view.customer.CustomerController', {
     alias: 'controller.customerController',
 
     onAddButtonClick: function() {
-        var modal = Ext.create('MovieRental.view.CustomerPanel',{
+        var modal = Ext.create('MovieRental.view.CustomerForm',{
             viewModel: {
                 data: {
                     title: 'Add Customer',
@@ -18,7 +18,7 @@ Ext.define('MovieRental.view.customer.CustomerController', {
     },
 
     onEditButtonClick: function(grid, rowIndex, colIndex, item, e, record){
-        var modal = Ext.create('MovieRental.view.CustomerPanel',{
+        var modal = Ext.create('MovieRental.view.CustomerForm',{
             viewModel: {
                 data: {
                     customerInfo: record,
@@ -28,7 +28,7 @@ Ext.define('MovieRental.view.customer.CustomerController', {
             }
         });
         modal.getViewModel().set('customers', grid.getStore());
-        modal.loadRecord(record);
+        console.log(grid);
         modal.show();
     },
     
@@ -43,7 +43,7 @@ Ext.define('MovieRental.view.customer.CustomerController', {
             success: function(){
                 me.toast('Customer Successfully Created!');
                 me.getView().destroy();
-                store.reload();
+                store.load();
             },
             failure: function(){
                 me.toast('Error! Problem Creating Customer');
@@ -53,35 +53,42 @@ Ext.define('MovieRental.view.customer.CustomerController', {
     },
 
     onUpdateCustomer: function(){
-        var form = Ext.create('MovieRental.view.CustomerPanel');
-        var vm = this.getViewModel();
-        var store = vm.getStore('customers');
-        // var record = store.getById(vm.data.customerInfo.data.Id);
-        var newValues = vm.data.customerInfo.data;
-        var record = form.getRecord();
-        // form.updateRecord(newValues);
-        // record.set(newValues);
-        form.updateRecord(record);
-        console.log(record);
-        store.sync();
+        var me = this;
+        var vm = me.getViewModel();
+        var store = vm.get('customers');
+        var customer = vm.get('customerInfo');
+
+        store.sync({
+            params:{
+                Id: customer.get('Id')
+            },
+            success: function(){
+                me.toast('Customer Successfully Updated!');
+                me.getView().destroy();
+            },
+            failure: function(){
+                me.toast("Error! Problem Updating Customer");
+                store.rejectChanges();
+            }
+        });
     },
 
     onDeleteCustomer: function(grid, rowIndex, colIndex, item, e, record){
 
         var me = this;
         var store = grid.getStore();
-        Ext.Msg.confirm('Delete Changes', 'Do you want to delete', function(choice){
+        Ext.Msg.confirm('Delete Changes', 'Do you want to remove customer '+'"' + record.get('Name') + '"', function(choice){
             if(choice == 'yes'){
 
-                var id = record.get('Id');
+                var customerId = record.get('Id');
                 store.remove(record);
                 store.sync({
                     params: {
-                        customerId: id
+                        Id: customerId
                     },
                     success: function(response, request){
-                        me.toast("Customer Successfully Deleted!");
-                        store.reload();
+                        me.toast("Customer Successfully Removed!");
+                        store.load();
                     },
                     failure: function(response, request){
                         me.toast("Error! Problem Deleting Customer");
