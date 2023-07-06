@@ -1,4 +1,4 @@
-Ext.define('MovieRental.view.movie.MovieList',{
+Ext.define('MovieRental.view.movie.Movies',{
     extend: 'Ext.grid.Panel',
 
     xtype: 'movieList',

@@ -1,4 +1,4 @@
-Ext.define('MovieRental.view.customer.CustomerList', {
+Ext.define('MovieRental.view.customer.Customers', {
     extend: 'Ext.grid.Panel',
 
     xtype: 'customerList',
@@ -8,10 +8,6 @@ Ext.define('MovieRental.view.customer.CustomerList', {
         width: 130,
         handler: 'onAddButtonClick'
     }],
-    // bbar:{
-    //     xtype: 'pagingtoolbar',
-    //     displayInfo: true
-    // },
 
     title: 'Customers',
 
