@@ -1,6 +1,5 @@
 Ext.define('MovieRental.store.Movie',{
     extend: 'Ext.data.Store',
-
     alias: 'store.movieStore',
 
     model: 'MovieRental.model.Movie',

@@ -37,7 +37,11 @@ Ext.define('MovieRental.view.customer.CustomerController', {
         var me = this;
         var vm = me.getViewModel();
         var store = vm.get('customers');
-        store.add(vm.data.customerInfo);
+        if(vm.data.customerInfo){
+            store.add(vm.data.customerInfo);
+        } else{
+            me.toast('Please Fill all the fields!');
+        }
 
         store.sync({
             success: function(){
@@ -74,7 +78,6 @@ Ext.define('MovieRental.view.customer.CustomerController', {
     },
 
     onDeleteCustomer: function(grid, rowIndex, colIndex, item, e, record){
-
         var me = this;
         var store = grid.getStore();
         Ext.Msg.confirm('Delete Changes', 'Do you want to remove customer '+'"' + record.get('Name') + '"', function(choice){

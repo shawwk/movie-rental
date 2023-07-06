@@ -1,9 +1,6 @@
 Ext.define('MovieRental.view.movie.MovieList',{
     extend: 'Ext.grid.Panel',
-    // requires:[
-    //     'MovieRental.view.movie.MovieController',
-    //     'MovieRental.view.movie.MovieViewModel'
-    // ],
+
     xtype: 'movieList',
     tbar: [{
         xtype:'button',
@@ -22,6 +19,11 @@ Ext.define('MovieRental.view.movie.MovieList',{
 
     controller: 'movieController',
     columns: [{
+        dataIndex: 'Id',
+        bind: '{movies.Id}',
+        hidden: true
+    },
+    {
         text: 'Title',
         flex: 1,
         dataIndex: 'Title',
@@ -38,5 +40,23 @@ Ext.define('MovieRental.view.movie.MovieList',{
         flex: 1,
         dataIndex: 'Director',
         bind: '{movies.Director}'
+    },
+    {
+        text: 'Actions',
+        xtype: 'actioncolumn',
+        width: 'auto',
+        items: [{
+            xtype: 'button',
+            iconCls: 'fas fa-edit',
+            tooltip: 'Edit',
+            handler: 'onEditMovie'
+
+        },
+        {
+            xtype: 'button',
+            iconCls: 'fas fa-trash',
+            tooltip: 'Delete',
+            handler: 'onDeleteMovie'
+        }]  
     }]
 })

@@ -10,9 +10,18 @@ Ext.define('MovieRental.view.MovieForm', {
     viewModel: {
         type: 'movieViewModel'
     },
-    layout: 'form',    items:[{
+    bind:{
+        title: '{title}'
+    },
+    layout: 'form',    
+    items:[{
         xtype: 'form',
         items: [{
+            xtype: 'textfield',
+            bind: '{movieDetail.Id}',
+            hidden: true
+        },
+        {
             xtype: 'textfield',
             fieldLabel: 'Movie Title',
             bind: '{movieDetail.Title}'
@@ -29,6 +38,21 @@ Ext.define('MovieRental.view.MovieForm', {
         }],
         buttons: [{
             text: 'Save',
+            handler: 'onAddMovie',
+            bind: {
+                hidden: '{!create}'
+            }
+        },
+        {
+            text: 'Update',
+            handler: 'onUpdateMovie',
+            bind: {
+                hidden: '{create}'
+            }
+        },
+        {
+            text: 'Cancel',
+            handler: 'onCancel'
         }]
     }]
 

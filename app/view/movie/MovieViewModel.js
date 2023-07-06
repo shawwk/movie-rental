@@ -3,7 +3,9 @@ Ext.define('MovieRental.view.movie.MovieViewModel',{
 
     alias: 'viewmodel.movieViewModel',
     data:{
-        movieInfo: null
+        movieDetail: null,
+        creat: null,
+        title: null
     },
     stores: {
         movies: {
