@@ -64,7 +64,8 @@ Ext.define('MovieRental.view.movie.MovieController',{
             params:{
                 Id: movie.get('Id')
             },
-            success: function(){
+            success: function(response, request){
+                console.log(response);
                 me.toast('Movie Successfully Updated!');
                 me.getView().destroy();
             },
@@ -87,7 +88,6 @@ Ext.define('MovieRental.view.movie.MovieController',{
                     },
                     success: function(response, request){
                         me.toast("Movie Successfully Removed!");
-                        store.load();
                     },
                     failure: function(response, request){
                         me.toast("Error! Problem Deleting Movie");
@@ -116,4 +116,4 @@ Ext.define('MovieRental.view.movie.MovieController',{
         this.getView().destroy();
     },
 
-})
+});

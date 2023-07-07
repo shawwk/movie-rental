@@ -9,10 +9,9 @@ Ext.define('MovieRental.view.movie.MovieViewModel',{
     },
     stores: {
         movies: {
-            model: 'MovieRental.model.Movie',
             type: 'movieStore',
             autoLoad: true,
             autoSync: false
         }
     }
-})
+});

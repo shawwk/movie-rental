@@ -78,9 +78,8 @@ Ext.define('MovieRental.view.main.Main', {
     items: [{
         title: 'Rentals',
         iconCls: 'fa-home',
-        // The following grid shares a store with the classic version's grid as well!
         items: [{
-            xtype: 'mainlist'
+            xtype: 'rentalList'
         }]
     }, {
         title: 'Movies',

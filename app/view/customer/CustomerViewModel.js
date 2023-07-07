@@ -9,7 +9,6 @@ Ext.define('MovieRenta.customer.CustomerViewModel', {
     },
     stores: {
         customers: {
-            model: 'MovieRental.model.Customer',
             type: 'customerStore',
             autoLoad: true,
             autoSync: false
