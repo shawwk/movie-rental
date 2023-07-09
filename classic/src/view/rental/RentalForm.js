@@ -1,3 +1,51 @@
+var gridMovies = Ext.create('Ext.grid.Panel',{
+    xtype: 'grid',
+    region: 'center',
+    width: '100%',
+    height: 365,
+    viewModel: {
+        type:'rentalViewModel'
+    },
+
+    bind: {
+        store: '{movies}'
+    },
+
+     columns: [{
+     dataIndex: 'Id',
+     hidden: true
+    },
+    {
+        text: 'Title',
+        dataIndex: 'Title',
+        bind: '{movies.Title}'
+    },
+    {
+        text: 'Genre',
+        dataIndex: 'Genre',
+        bind: '{movies.Genre}'
+    },
+    {
+        text: 'Director',
+        dataIndex: 'Director',
+        bind: '{movies.Director}'
+    }
+    ],
+    selModel: 'checkboxmodel',
+    buttons:[{
+        text: 'Save',
+        handler: 'onSyncRental'
+    },
+    {
+        text: 'Cancel',
+        handler: function(){
+            // var me = this;
+            // var store = me.getStore('movies');
+            // store.rejectChanges();
+        }
+    }]
+});
+
 Ext.define('MovieRental.view.rental.RentalForm',{
     extend: 'Ext.window.Window',
 
@@ -7,13 +55,17 @@ Ext.define('MovieRental.view.rental.RentalForm',{
 
     controller: 'rentalController',
 
-    title: 'Rentals Details',
+    title: 'New Rent',
 
     floating: true,
-    layout: 'form',
+    modal: true,
+    layout: 'vbox',
     width: 400,
     height: 600,
-
+    bodyPadding: 20,
+    // items:[{
+    //     xtype: 'movieGrid'
+    // }],
     items: [
       {
         xtype: 'form',
@@ -21,6 +73,7 @@ Ext.define('MovieRental.view.rental.RentalForm',{
         height: 150,
         items: [{
             xtype: 'datefield',
+            reference: 'rentalDate',
             fieldLabel: 'Date',
             format: 'd-M-Y',
             value: Ext.Date.add(new Date(), Ext.Date.DAY),
@@ -33,77 +86,11 @@ Ext.define('MovieRental.view.rental.RentalForm',{
             valueField: 'Id',
             triggerAction: 'all',
             queryMode: 'local',
-            minChars: 5,
+            minChars: 3,
+            
             bind: {
-                store: '{customers}'
+                store: '{customers}',
+                value: '{selectedCustomer}'
             }
-        },
-        {
-            xtype: 'combobox',
-            fieldLabel: 'Movie:',
-            displayField: 'Title', 
-            valueField: 'Id',
-            triggerAction: 'all',
-            queryMode: 'local',
-            minChars: 5,
-            bind: {
-                store: '{movies}'
-            },
-            listeners: { 
-                select: function(combo, records) {
-                   console.log(records);
-                }}
-        }],
-        // buttons:[{
-        //     text: 'Select Movie',
-        //     handler: 'onSelectMovie'
-        // }]
-      },
-      {
-        xtype: 'grid',
-        region: 'center',
-        width: '100%',
-        height: 390,
-
-        columns: [{
-         dataIndex: 'Id',
-         hidden: true
-        },
-        {
-            text: 'Title',
-            bind: '{selectedMovies.Title}'
-        },
-        {
-            text: 'Genre',
-            bind: '{selectedMovies.Genre}'
-        },
-        {
-            text: 'Director',
-            bind: '{selectedMovies.Director}'
-        },
-        {
-            text: 'Actions',
-            xtype:'actioncolumn',
-            width: 'auto',
-            items: [{
-                xtype: 'button',
-                conCls: 'fas fa-edit',
-                tooltip: 'Edit',
-                handler : 'onEditForm'
-        },
-        {
-            iconCls:'fa fa-trash',
-            tooltip: 'Delete',
-            handler : 'onDeleteCustomer'
-            }]
-        }],
-        buttons:[{
-            text: 'Update'
-        },
-        {
-            text: 'Cancel'
-        }]
-      }
-    ]
-    
+        }]},gridMovies]    
 })

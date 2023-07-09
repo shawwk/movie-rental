@@ -4,7 +4,7 @@ Ext.define('MovieRental.view.rental.Rentals',{
 
     tbar:[{
         xtype: 'button',
-        text: 'Rent Movies',
+        text: 'New Rent',
         with: 130,
         handler: 'onAddForm'
     }],
@@ -43,7 +43,22 @@ Ext.define('MovieRental.view.rental.Rentals',{
         flex: 1,
         dataIndex: 'Customer',
         bind: '{rentals.Customer}'
-    },{
+    },
+    // {
+        
+    //         text: 'Rented Movies',
+    //         renderer: function (value, metaData, record, rowIdx, colIdx, store, view) {
+    //             values = [];
+    //             record.rentalDetails().each(function(detail){
+    //                 console.log(detail);
+    //                 values.push(detail);
+    //             });
+    //             console.log(record);
+    //             return values.join('<br\>');
+    //         }
+            
+    // },
+    {
         text: 'Actions',
         xtype:'actioncolumn',
         width: 'auto',
@@ -51,12 +66,11 @@ Ext.define('MovieRental.view.rental.Rentals',{
             xtype: 'button',
             iconCls: 'fas fa-edit',
             tooltip: 'Edit',
-            handler : 'onEditForm'
+            handler : 'onRentals'
         },{
             iconCls:'fa fa-trash',
             tooltip: 'Delete',
             handler : 'onDeleteCustomer'
         }]
-    }],
-
+    }]
 })

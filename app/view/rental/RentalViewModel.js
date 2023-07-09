@@ -6,6 +6,7 @@ Ext.define('MovieRental.view.rental.RentalViewModel',{
         selectedMovie: null,
         selectedCustomer: null
     },
+
     stores:{
         rentals: {
             type: 'rentalStore',
@@ -23,7 +24,8 @@ Ext.define('MovieRental.view.rental.RentalViewModel',{
             autoSync: false
         },
         selectedMovies: {
-            type: 'customerStore',
+            // type: 'movieStore',
+            model: 'MovieRental.model.Movie',
             autoLoad: false,
             autoSync: false
         }

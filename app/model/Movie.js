@@ -9,5 +9,6 @@ Ext.define('MovieRental.model.Movie',{
         { name: 'Title', type: 'string' },
         { name: 'Genre', type: 'string' },
         { name: 'Director', type: 'string'}
-    ]
+    ],
+    // belongsTo: 'MovieRental.model.Rental'
 });

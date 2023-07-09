@@ -7,7 +7,7 @@ Ext.define('MovieRental.store.Rental',{
     proxy: {
         type: 'rest',
         noCache: false,
-        url: 'https://localhost:44321/api/rental/list',
+        // url: 'https://localhost:44321/api/rental/list',
         api: {
             read: 'https://localhost:44321/api/rental/list',
             create: 'https://localhost:44321/api/rental/add',

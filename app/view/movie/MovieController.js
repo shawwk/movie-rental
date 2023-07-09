@@ -20,10 +20,11 @@ Ext.define('MovieRental.view.movie.MovieController',{
 
         var me = this;
         var vm = me.getViewModel();
+        var movieDetail = vm.get('movieDetail');
         var store = vm.get('movies');
 
-        if(vm.data.movieDetail){
-            store.add(vm.data.movieDetail);
+        if(movieDetail){
+            store.add(movieDetail);
         } else{
             me.toast('Please fill all fields!');
         }

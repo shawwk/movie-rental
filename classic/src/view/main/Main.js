@@ -15,7 +15,7 @@ Ext.define('MovieRental.view.main.Main', {
 
         'MovieRental.view.main.MainController',
         'MovieRental.view.main.MainModel',
-        'MovieRental.view.main.List',
+        // 'MovieRental.view.main.List',
         
     ],
 
