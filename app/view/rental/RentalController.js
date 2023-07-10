@@ -13,11 +13,14 @@ Ext.define('MovieRental.view.rental.RentalController',{
         var me = this;
         var vm = me.getViewModel();
         var store = vm.get('movies');
+        var customerStore = vm.get('customers');
+        customerStore.load();
         store.load();
 
         var modal = Ext.create('MovieRental.view.rental.RentalForm');
         modal.getViewModel().set('rentals', this.getViewModel().getStore('rentals'));
         modal.getViewModel().set('movies', store);
+        modal.getViewModel().set('customers', customerStore);
         modal.show();
 
     },

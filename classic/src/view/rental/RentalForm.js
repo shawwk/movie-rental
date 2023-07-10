@@ -1,47 +1,3 @@
-var gridMovies = Ext.create('Ext.grid.Panel',{
-    xtype: 'grid',
-    width: '100%',
-    height: 365,
-    
-    viewModel: {
-        type:'rentalViewModel'
-    },
-
-    bind: {
-        store: '{movies}'
-    },
-
-     columns: [{
-     dataIndex: 'Id',
-     hidden: true
-    },
-    {
-        text: 'Title',
-        dataIndex: 'Title',
-        bind: '{movies.Title}'
-    },
-    {
-        text: 'Genre',
-        dataIndex: 'Genre',
-        bind: '{movies.Genre}'
-    },
-    {
-        text: 'Director',
-        dataIndex: 'Director',
-        bind: '{movies.Director}'
-    }
-    ],
-    selModel: 'checkboxmodel',
-    buttons:[{
-        text: 'Save',
-        handler: 'onSyncRental'
-    },
-    {
-        text: 'Cancel',
-        handler: 'onCancel'
-    }]
-});
-
 Ext.define('MovieRental.view.rental.RentalForm',{
     extend: 'Ext.window.Window',
 
@@ -55,10 +11,11 @@ Ext.define('MovieRental.view.rental.RentalForm',{
 
     floating: true,
     modal: true,
-    layout: 'vbox',
+    // layout: 'vbox',
     width: 400,
     height: 600,
     bodyPadding: 20,
+    closeAction : 'hide',
 
     items: [
       {
@@ -85,5 +42,43 @@ Ext.define('MovieRental.view.rental.RentalForm',{
                 store: '{customers}',
                 value: '{selectedCustomer}'
             }
-        }]},gridMovies]    
+        }
+    ]},
+    {
+        xtype: 'grid',
+        height: 600,
+        bind: {
+            store: '{movies}'
+        },
+            columns: [{
+            dataIndex: 'Id',
+            hidden: true
+           },
+           {
+               text: 'Title',
+               dataIndex: 'Title',
+               bind: '{movies.Title}'
+           },
+           {
+               text: 'Genre',
+               dataIndex: 'Genre',
+               bind: '{movies.Genre}'
+           },
+           {
+               text: 'Director',
+               dataIndex: 'Director',
+               bind: '{movies.Director}'
+           }
+           ],
+           selModel: 'checkboxmodel',
+          
+    }]    ,
+    buttons:[{
+        text: 'Save',
+        handler: 'onSyncRental'
+    },
+    {
+        text: 'Cancel',
+        handler: 'onCancel'
+    }]
 });

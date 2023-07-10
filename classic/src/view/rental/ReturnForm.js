@@ -43,14 +43,15 @@ Ext.define('MovieRental.view.rental.ReturnForm', {
            }
            ],
            selModel: 'checkboxmodel',
-           buttons:[{
-               text: 'Save',
-               handler: 'onSyncRental'
-           },
-           {
-               text: 'Cancel',
-               handler: 'onCancel'
-           }]
+           
+    }],
+    buttons:[{
+        text: 'Return',
+        handler: 'onReturnMovies'
+    },
+    {
+        text: 'Cancel',
+        handler: 'onCancel'
     }]
     
 });
