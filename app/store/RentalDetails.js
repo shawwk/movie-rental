@@ -1,16 +1,16 @@
-Ext.define('MovieRental.store.Rental',{
+Ext.define('MovieRental.store.RentalDetails',{
     extend: 'Ext.data.Store',
-    alias: 'store.rentalStore',
+    alias: 'store.rentalDetailStore',
 
-    model: 'MovieRental.model.Rental',
+    model: 'MovieRental.model.RentalDetails',
 
     proxy: {
         type: 'rest',
         noCache: false,
         autoLoad: false,
-        // url: 'https://localhost:44321/api/rental/list',
+        url: 'https://localhost:44321/',
         api: {
-            read: 'https://localhost:44321/api/rental/list',
+            read: 'https://localhost:44321/api/rental/details',
             create: 'https://localhost:44321/api/rental/add',
             update: 'https://localhost:44321/api/rental/update?',
             destroy: 'https://localhost:44321/api/rental/delete?'

@@ -11,6 +11,7 @@ Ext.define('MovieRental.store.Movie',{
     proxy: {
         type: 'rest',
         noCache: false,
+        autoLoad: false,
         url: 'https://localhost:44321/api/movie/list',
         api: {
             read: 'https://localhost:44321/api/movie/list',

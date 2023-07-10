@@ -10,7 +10,7 @@ Ext.define('MovieRental.model.Rental',{
         { name: 'RentalDate', type: 'date', }
     ],
     hasMany: {
-        model: 'MovieRental.model.Movie',
+        model: 'MovieRental.model.RentalDetails',
         name: 'rentalDetails'
     }
 });

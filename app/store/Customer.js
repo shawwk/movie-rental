@@ -12,6 +12,7 @@ proxy:
 {
     type: 'rest',
     noCache: false,
+    autoLoad: false,
     api:{
         read: 'https://localhost:44321/api/customer/list',
         create: 'https://localhost:44321/api/customer/add',

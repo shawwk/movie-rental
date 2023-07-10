@@ -2,7 +2,14 @@ Ext.define('MovieRental.view.movie.MovieController',{
     extend: 'Ext.app.ViewController',
 
     alias: 'controller.movieController',
-
+    
+    init: function(){
+        var me = this;
+        var vm = me.getViewModel();
+        var store = vm.get('movies');
+        store.load();
+    },
+    
     onMovieForm: function(){
         var modal = Ext.create('MovieRental.view.MovieForm',{
             viewModel: {

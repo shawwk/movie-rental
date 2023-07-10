@@ -52,7 +52,7 @@ Ext.define('MovieRental.view.rental.Rentals',{
             xtype: 'button',
             iconCls: 'fa fa-eye',
             tooltip: 'View Rents',
-            handler : 'onRentals'
+            handler : 'onViewRents'
         },{
             iconCls:'fa fa-trash',
             tooltip: 'Delete',

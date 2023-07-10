@@ -2,15 +2,28 @@ Ext.define('MovieRental.view.rental.RentalController',{
     extend: 'Ext.app.ViewController',
     alias: 'controller.rentalController',
 
+    init: function(){
+        var me = this;
+        var vm = me.getViewModel();
+        var store = vm.get('rentals');
+        store.load();
+    },
+
     onAddForm: function(){
+        var me = this;
+        var vm = me.getViewModel();
+        var store = vm.get('movies');
+        store.load();
+
         var modal = Ext.create('MovieRental.view.rental.RentalForm');
         modal.getViewModel().set('rentals', this.getViewModel().getStore('rentals'));
+        modal.getViewModel().set('movies', store);
         modal.show();
 
     },
 
     onSyncRental: function(){
-        
+
         var me = this;
         var rentedMovies = [];
         var grid = me.getView().down('grid');
@@ -45,6 +58,30 @@ Ext.define('MovieRental.view.rental.RentalController',{
                 storeRentals.rejectChanges();
             },
         });
+    },
+
+    onViewRents: function(grid, rowIndex, colIndex, item, e, record){
+        var rented = this.getViewModel().getStore('rentedMovies');
+        var modal = Ext.create('MovieRental.view.rental.ReturnForm',{
+            viewModel:{
+                data:{
+                    selectedCustomer: record.data.Id
+                }
+            }
+        });
+
+        rented.load({
+        params: {
+                rentalId: record.data.Id
+            }
+        });
+
+        modal.getViewModel().set('rentedMovies', rented);
+        modal.show();
+    },
+
+    onReturnMovies: function(){
+
     },
 
     onDeleteRent: function(grid, rowIndex, colIndex, item, e, record){
@@ -86,4 +123,6 @@ Ext.define('MovieRental.view.rental.RentalController',{
         store.rejectChanges();
         this.getView().destroy();
     }
+
+    
 });

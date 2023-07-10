@@ -3,6 +3,13 @@ Ext.define('MovieRental.view.customer.CustomerController', {
     extend: 'Ext.app.ViewController',
 
     alias: 'controller.customerController',
+    
+    init: function(){
+        var me = this;
+        var vm = me.getViewModel();
+        var store = vm.get('customers');
+        store.load();
+    },
 
     onAddButtonClick: function() {
         var modal = Ext.create('MovieRental.view.CustomerForm',{

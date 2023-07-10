@@ -4,13 +4,14 @@ Ext.define('MovieRental.view.rental.RentalViewModel',{
 
     data: {
         selectedMovie: null,
-        selectedCustomer: null
+        selectedCustomer: null,
+        selectedRent: null
     },
 
     stores:{
         rentals: {
             type: 'rentalStore',
-            autoLoad: true,
+            autoLoad: false,
             autoSync: false
         },
         movies: {
@@ -29,14 +30,9 @@ Ext.define('MovieRental.view.rental.RentalViewModel',{
             autoSync: false
         },
         rentedMovies: {
-            type: 'movieStore',
-            autoLoad: true,
-            autoSync: false,
-            filters: [{
-                property: 'AvailabilityStatus',
-                value: false,
-                exactMatch: true
-            }]
+            type: 'rentalDetailStore',
+            autoLoad: false,
+            autoSync: false
         }
     }
 });
