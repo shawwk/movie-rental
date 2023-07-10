@@ -16,18 +16,27 @@ Ext.define('MovieRental.view.rental.RentalViewModel',{
         movies: {
             type: 'movieStore',
             autoLoad: true,
-            autoSync: false
+            autoSync: false,
+            filters: [{
+                property: 'AvailabilityStatus',
+                value: true,
+                exactMatch: true
+            }]
         },
         customers: {
             type: 'customerStore',
             autoLoad: true,
             autoSync: false
         },
-        selectedMovies: {
-            // type: 'movieStore',
-            model: 'MovieRental.model.Movie',
-            autoLoad: false,
-            autoSync: false
+        rentedMovies: {
+            type: 'movieStore',
+            autoLoad: true,
+            autoSync: false,
+            filters: [{
+                property: 'AvailabilityStatus',
+                value: false,
+                exactMatch: true
+            }]
         }
     }
 });

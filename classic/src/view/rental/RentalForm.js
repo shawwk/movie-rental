@@ -1,8 +1,8 @@
 var gridMovies = Ext.create('Ext.grid.Panel',{
     xtype: 'grid',
-    region: 'center',
     width: '100%',
     height: 365,
+    
     viewModel: {
         type:'rentalViewModel'
     },
@@ -38,11 +38,7 @@ var gridMovies = Ext.create('Ext.grid.Panel',{
     },
     {
         text: 'Cancel',
-        handler: function(){
-            // var me = this;
-            // var store = me.getStore('movies');
-            // store.rejectChanges();
-        }
+        handler: 'onCancel'
     }]
 });
 
@@ -63,20 +59,17 @@ Ext.define('MovieRental.view.rental.RentalForm',{
     width: 400,
     height: 600,
     bodyPadding: 20,
-    // items:[{
-    //     xtype: 'movieGrid'
-    // }],
+
     items: [
       {
         xtype: 'form',
-        region: 'north',
         height: 150,
         items: [{
             xtype: 'datefield',
             reference: 'rentalDate',
             fieldLabel: 'Date',
             format: 'd-M-Y',
-            value: Ext.Date.add(new Date(), Ext.Date.DAY),
+            value: Ext.Date.add(new Date()),
             readOnly: true
         },
         {
@@ -93,4 +86,4 @@ Ext.define('MovieRental.view.rental.RentalForm',{
                 value: '{selectedCustomer}'
             }
         }]},gridMovies]    
-})
+});

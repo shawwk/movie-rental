@@ -80,7 +80,7 @@ Ext.define('MovieRental.view.movie.MovieController',{
     onDeleteMovie: function(grid, rowIndex, colIndex, item, e, record){
         var me = this;
         var store = grid.getStore();
-        Ext.Msg.confirm('Delete Changes', 'Do you want to remove movie '+'"' + record.get('Title') + '"', function(choice){
+        Ext.Msg.confirm('Delete Movie', 'Do you want to remove movie '+'"' + record.get('Title') + '"', function(choice){
             if(choice == 'yes'){
                 store.remove(record);
                 store.sync({
@@ -114,7 +114,6 @@ Ext.define('MovieRental.view.movie.MovieController',{
         var vm = me.getViewModel();
         var store = vm.get('movies');
         store.rejectChanges();
-        this.getView().destroy();
-    },
-
+        this.getView().remove();
+    }
 });

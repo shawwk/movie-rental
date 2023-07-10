@@ -80,7 +80,7 @@ Ext.define('MovieRental.view.customer.CustomerController', {
     onDeleteCustomer: function(grid, rowIndex, colIndex, item, e, record){
         var me = this;
         var store = grid.getStore();
-        Ext.Msg.confirm('Delete Changes', 'Do you want to remove customer '+'"' + record.get('Name') + '"', function(choice){
+        Ext.Msg.confirm('Delete Customer', 'Do you want to remove customer '+'"' + record.get('Name') + '"', function(choice){
             if(choice == 'yes'){
 
                 var customerId = record.get('Id');

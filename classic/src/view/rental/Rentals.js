@@ -44,33 +44,19 @@ Ext.define('MovieRental.view.rental.Rentals',{
         dataIndex: 'Customer',
         bind: '{rentals.Customer}'
     },
-    // {
-        
-    //         text: 'Rented Movies',
-    //         renderer: function (value, metaData, record, rowIdx, colIdx, store, view) {
-    //             values = [];
-    //             record.rentalDetails().each(function(detail){
-    //                 console.log(detail);
-    //                 values.push(detail);
-    //             });
-    //             console.log(record);
-    //             return values.join('<br\>');
-    //         }
-            
-    // },
     {
         text: 'Actions',
         xtype:'actioncolumn',
         width: 'auto',
         items: [{
             xtype: 'button',
-            iconCls: 'fas fa-edit',
-            tooltip: 'Edit',
+            iconCls: 'fa fa-eye',
+            tooltip: 'View Rents',
             handler : 'onRentals'
         },{
             iconCls:'fa fa-trash',
             tooltip: 'Delete',
-            handler : 'onDeleteCustomer'
+            handler : 'onDeleteRent'
         }]
     }]
 })
