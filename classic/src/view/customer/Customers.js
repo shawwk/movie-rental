@@ -29,19 +29,19 @@ Ext.define('MovieRental.view.customer.Customers', {
         text: "Name",
         flex: 1,
         dataIndex: 'Name',
-        bind: '{customers.Name}'
+        // bind: '{customers.Name}'
     },
     {
         text: "Address",
         flex: 1,
         dataIndex: 'Address',
-        bind: '{customers.Address}'
+        // bind: '{customers.Address}'
     },
     {
         text: "Contact",
         flex: 1,
         dataIndex: 'Contact',
-        bind: '{customers.Contact}'
+        // bind: '{customers.Contact}'
     },{
         text: 'Actions',
         xtype:'actioncolumn',

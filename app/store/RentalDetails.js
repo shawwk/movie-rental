@@ -10,7 +10,8 @@ Ext.define('MovieRental.store.RentalDetails',{
         autoLoad: false,
         url: 'https://localhost:44321/',
         api: {
-            read: 'https://localhost:44321/api/rental/details'
+            read: 'https://localhost:44321/api/rental/details',
+            update: 'https://localhost:44321/api/rental/details/return?'
         },
         reader:{
             type: 'json'

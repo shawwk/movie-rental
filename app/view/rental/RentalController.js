@@ -38,7 +38,7 @@ Ext.define('MovieRental.view.rental.RentalController',{
         Ext.Array.each(selectedMovies, function (selectedMovie) {
             var movie = Ext.create('MovieRental.model.RentalDetails', {
             MovieId: selectedMovie.get('Id'),
-        });
+            });
             rentedMovies.push(movie.data);
         });
 
@@ -68,14 +68,14 @@ Ext.define('MovieRental.view.rental.RentalController',{
         var modal = Ext.create('MovieRental.view.rental.ReturnForm',{
             viewModel:{
                 data:{
-                    selectedCustomer: record.data.Id
+                    selectedRent: record
                 }
             }
         });
 
         rented.load({
         params: {
-                rentalId: record.data.Id
+                rentalId: record.get('Id')
             }
         });
 
@@ -84,7 +84,31 @@ Ext.define('MovieRental.view.rental.RentalController',{
     },
 
     onReturnMovies: function(){
-
+        var me = this;
+        var vm = me.getViewModel();
+        var grid = me.getView().down('grid');
+        var store = grid.getStore('rentedMovies');
+        var rental = vm.get('selectedRent');
+        var selectedMovies = grid.getSelectionModel().getSelection();
+        
+        Ext.Array.each(selectedMovies, function (record) {
+            record.set('IsReturned', true);
+        });
+        
+        
+        store.sync({
+            params: {
+                rentalId: rental.get('Id')
+            },
+            success: function () {
+                me.toast('Movie Successfully Returned!');
+                store.reload();
+            },
+            failure: function () {
+                me.toast('Failed to Return the movie!');
+                store.rejectChanges();
+            }
+        });
     },
 
     onDeleteRent: function(grid, rowIndex, colIndex, item, e, record){
@@ -107,6 +131,14 @@ Ext.define('MovieRental.view.rental.RentalController',{
                 });
             }
         });
+    },
+
+    onSelectReturnedMovie: function(model, record, index) {
+        if (record.get('IsReturned')) {
+            var me = this;
+            me.toast('"' + record.get('Title') + '"' + ' is already returned!');
+            return false;
+        }
     },
 
     toast: function(msg){

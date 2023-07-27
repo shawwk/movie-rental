@@ -5,7 +5,7 @@ Ext.define('MovieRental.view.rental.RentalViewModel',{
     data: {
         selectedMovie: null,
         selectedCustomer: null,
-        selectedRent: null
+        selectedRent: null,
     },
 
     stores:{

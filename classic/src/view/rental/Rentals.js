@@ -26,13 +26,13 @@ Ext.define('MovieRental.view.rental.Rentals',{
         text: 'Transaction Code',
         flex: 1,
         dataIndex: 'TransactionCode',
-        bind: '{rentals.TransactionCode}'
+        // bind: '{rentals.TransactionCode}'
     },
     {
         text: 'Rental Date',
         flex: 1,
         dataIndex: 'RentalDate',
-        bind: '{rentals.RentalDate}',
+        // bind: '{rentals.RentalDate}',
         renderer: function(value, metaData, record) {
             var formattedDate = Ext.util.Format.date(value, 'm/d/Y');
             return formattedDate;
@@ -42,7 +42,7 @@ Ext.define('MovieRental.view.rental.Rentals',{
         text: 'Customer Name',
         flex: 1,
         dataIndex: 'Customer',
-        bind: '{rentals.Customer}'
+        // bind: '{rentals.Customer}'
     },
     {
         text: 'Actions',

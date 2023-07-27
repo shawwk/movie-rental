@@ -3,8 +3,7 @@ Ext.define('MovieRental.view.rental.ReturnForm', {
 
     floating: true,
     modal: true,
-    // layout: 'vbox',
-    width: 400,
+    width: 645,
     height: 600,
     bodyPadding: 20,
 
@@ -17,41 +16,90 @@ Ext.define('MovieRental.view.rental.ReturnForm', {
     },
 
     items:[{
-        xtype: 'grid',
-        height: 500,
-        bind: {
-            store: '{rentedMovies}'
+            xtype: 'form',
+            layout: 'vbox',
+            height: 100,
+            items: [{
+                xtype: 'datefield',
+                fieldLabel: 'Rent Date:',
+                format: 'd-M-Y',
+                bind: {
+                    value: '{selectedRent.RentalDate}'
+                },
+                readOnly: true
+            },
+            // {
+            //     xtype: 'textfield',
+            //     fieldLabel: 'Transaction Code: ',
+            //     bind: '{selectedRent.Customer}',
+            //     readOnly: true
+            // },
+            {
+                xtype: 'textfield',
+                fieldLabel: 'Customer Name:',
+                bind: '{selectedRent.Customer}',
+                readOnly: true
+            }]
         },
-        columns: [{
-            dataIndex: 'Id',
-            hidden: true
-           },
-           {
-               text: 'Title',
-               dataIndex: 'Title',
-               bind: '{rentedMovies.Title}'
-           },
-           {
-               text: 'Genre',
-               dataIndex: 'Genre',
-               bind: '{rentedMovies.Genre}'
-           },
-           {
-               text: 'Director',
-               dataIndex: 'Director',
-               bind: '{rentedMovies.Director}'
-           }
-           ],
-           selModel: 'checkboxmodel',
-           
-    }],
-    buttons:[{
-        text: 'Return',
-        handler: 'onReturnMovies'
-    },
-    {
-        text: 'Cancel',
-        handler: 'onCancel'
-    }]
-    
+        {
+            xtype: 'grid',
+            height: 600,
+            width: 610,
+            bind: {
+                store: '{rentedMovies}'
+            },
+            header: {
+                title: 'Rented Movies',
+                titlePosition: 0,
+                height: 40
+            },
+            columns:[{
+                text: 'Title',
+                dataIndex: 'Id',
+                hidden: true
+
+            },
+            {
+                text: 'Title',
+                dataIndex: 'Title'
+            },
+            {
+                text:'Genre',
+                dataIndex: 'Genre'
+            },
+            {
+                text: 'Director',
+                dataIndex: 'Director'
+            },
+            {
+                text: 'Return',
+                dataIndex: 'IsReturned',
+                renderer: function( value, metadata, record ){
+                    if(value){
+                        return '✔';
+                    } else {
+                        return '✖'
+                    }
+                }
+            },
+            {
+                text: 'Return Date',
+                width: 180,
+                dataIndex: 'ReturnDate'
+            }],
+            selModel: {
+                type: 'checkboxmodel',
+                listeners: {
+                    beforeselect: 'onSelectReturnedMovie'
+                }
+            },
+        }],
+        buttons:[{
+            text: 'Return',
+            handler: 'onReturnMovies'
+        },
+        {
+            text: 'Cancel',
+            handler: 'onCancel'
+        }]  
 });

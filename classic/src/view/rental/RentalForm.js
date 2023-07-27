@@ -20,7 +20,7 @@ Ext.define('MovieRental.view.rental.RentalForm',{
     items: [
       {
         xtype: 'form',
-        height: 150,
+        height: 100,
         items: [{
             xtype: 'datefield',
             reference: 'rentalDate',
@@ -50,29 +50,33 @@ Ext.define('MovieRental.view.rental.RentalForm',{
         bind: {
             store: '{movies}'
         },
-            columns: [{
-            dataIndex: 'Id',
-            hidden: true
-           },
-           {
-               text: 'Title',
-               dataIndex: 'Title',
-               bind: '{movies.Title}'
-           },
-           {
-               text: 'Genre',
-               dataIndex: 'Genre',
-               bind: '{movies.Genre}'
-           },
-           {
-               text: 'Director',
-               dataIndex: 'Director',
-               bind: '{movies.Director}'
-           }
-           ],
-           selModel: 'checkboxmodel',
-          
-    }]    ,
+        header: {
+            title: 'Available Movies',
+            titlePosition: 0,
+            height: 40
+            
+        },
+        columns: [{
+        dataIndex: 'Id',
+        hidden: true
+        },
+        {
+            text: 'Title',
+            dataIndex: 'Title',
+            bind: '{movies.Title}'
+        },
+        {
+            text: 'Genre',
+            dataIndex: 'Genre',
+            bind: '{movies.Genre}'
+        },
+        {
+            text: 'Director',
+            dataIndex: 'Director',
+            bind: '{movies.Director}'
+        }],
+        selModel: 'checkboxmodel',
+    }],
     buttons:[{
         text: 'Save',
         handler: 'onSyncRental'
